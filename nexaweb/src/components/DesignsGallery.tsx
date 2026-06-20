@@ -302,6 +302,7 @@ export function DesignsGallery({ isOpen, onClose }: DesignsGalleryProps) {
   const [bloomOpen,        setBloomOpen]        = useState(false);
   const [meridianOpen,     setMeridianOpen]     = useState(false);
 
+
   const openMomentum     = () => { setMomentumOpen(true);     window.history.pushState(null, '', '#momentum');     };
   const closeMomentum    = () => { setMomentumOpen(false);    window.history.pushState(null, '', '#gallery');      };
   const openAura         = () => { setAuraOpen(true);         window.history.pushState(null, '', '#aura');         };
@@ -325,6 +326,22 @@ export function DesignsGallery({ isOpen, onClose }: DesignsGalleryProps) {
   const openMeridian     = () => { setMeridianOpen(true);     window.history.pushState(null, '', '#health');       };
   const closeMeridian    = () => { setMeridianOpen(false);    window.history.pushState(null, '', '#gallery');      };
 
+  const anyDemoOpen = momentumOpen || auraOpen || groomingOpen || roofingOpen || plumbingOpen || constructionOpen || autoOpen || velaOpen || cipherOpen || bloomOpen || meridianOpen;
+
+  const closeCurrentDemo = () => {
+    if (momentumOpen)          closeMomentum();
+    else if (auraOpen)         closeAura();
+    else if (groomingOpen)     closeGrooming();
+    else if (roofingOpen)      closeRoofing();
+    else if (plumbingOpen)     closePlumbing();
+    else if (constructionOpen) closeConstruction();
+    else if (autoOpen)         closeAuto();
+    else if (velaOpen)         closeVela();
+    else if (cipherOpen)       closeCipher();
+    else if (bloomOpen)        closeBloom();
+    else if (meridianOpen)     closeMeridian();
+  };
+
   const OPENERS: Record<string, () => void> = {
     fitness: openMomentum,
     wellness: openAura,
@@ -338,6 +355,29 @@ export function DesignsGallery({ isOpen, onClose }: DesignsGalleryProps) {
     agency: openBloom,
     health: openMeridian,
   };
+
+  useEffect(() => {
+    const scrollY = window.scrollY;
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+    } else {
+      const top = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, parseInt(top || '0') * -1);
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -371,6 +411,29 @@ export function DesignsGallery({ isOpen, onClose }: DesignsGalleryProps) {
 
   return (
     <>
+      {/* Floating "Close Demo" button — always visible on mobile when any demo is open */}
+      <AnimatePresence>
+        {anyDemoOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed z-[300]"
+            style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 20px)", right: 20 }}
+          >
+            <button
+              onClick={closeCurrentDemo}
+              className="flex items-center gap-2 px-5 py-3 rounded-full text-sm font-semibold text-white"
+              style={{ background: "rgba(7,11,24,0.88)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}
+            >
+              <X size={15} />
+              Close Demo
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <MomentumDemo     isOpen={momentumOpen}     onClose={closeMomentum}     />
       <AuraWellnessDemo isOpen={auraOpen}         onClose={closeAura}         />
       <PawCoDemo        isOpen={groomingOpen}     onClose={closeGrooming}     />

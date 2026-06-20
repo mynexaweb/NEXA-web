@@ -17,6 +17,11 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
   title: {
     default: "NexaWeb — Websites Built for Growth",
     template: "%s | NexaWeb",
@@ -62,14 +67,6 @@ export const metadata: Metadata = {
         alt: "NexaWeb — Websites Built for Growth",
       },
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "NexaWeb — Websites Built for Growth",
-    description:
-      "We design and build high-performance websites that drive real business results.",
-    images: ["https://nexaweb.co/og-image.png"],
-    creator: "@nexaweb",
   },
   alternates: {
     canonical: "https://nexaweb.co",

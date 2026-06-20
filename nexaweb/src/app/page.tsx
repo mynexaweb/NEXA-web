@@ -3,6 +3,7 @@
 import { WebGLShader } from "@/components/ui/web-gl-shader"
 import { GlassShowcase } from "@/components/GlassShowcase"
 import { DesignsGallery } from "@/components/DesignsGallery"
+import { PhoneInput } from "@/components/PhoneInput"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 
@@ -59,9 +60,42 @@ const PROCESS = [
 ]
 
 export default function Home() {
-  const [menuOpen,   setMenuOpen]   = useState(false)
+  const [menuOpen,    setMenuOpen]    = useState(false)
   const [galleryOpen, setGalleryOpen] = useState(false)
-  const [formSent, setFormSent] = useState(false)
+
+  // Contact form state
+  const [contact, setContact] = useState({ name: "", email: "", phone: "", message: "" })
+  const [contactHoneypot, setContactHoneypot] = useState("")
+  const [contactSending, setContactSending]   = useState(false)
+  const [contactSent, setContactSent]         = useState(false)
+  const [contactError, setContactError]       = useState("")
+
+  const setC = (key: keyof typeof contact, val: string) =>
+    setContact(c => ({ ...c, [key]: val }))
+
+  const submitContact = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setContactSending(true)
+    setContactError("")
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...contact, website: contactHoneypot }),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({ error: "Something went wrong. Please try again." }))
+        setContactError(data.error || "Something went wrong. Please try again.")
+        setContactSending(false)
+        return
+      }
+      setContactSent(true)
+      setContactSending(false)
+    } catch {
+      setContactError("Network error. Please check your connection and try again.")
+      setContactSending(false)
+    }
+  }
 
   const openGallery = () => {
     setGalleryOpen(true)
@@ -122,7 +156,7 @@ export default function Home() {
 
         <div className="flex items-center gap-2">
           <a
-            href="#contact"
+            href="/intake"
             className="hidden md:flex items-center gap-2 h-9 px-5 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
             style={{ background: "#1447e6", boxShadow: "0 0 20px rgba(20,71,230,0.35)" }}
           >
@@ -131,7 +165,7 @@ export default function Home() {
 
           {/* Mobile CTA — compact */}
           <a
-            href="#contact"
+            href="/intake"
             className="md:hidden flex items-center h-8 px-3.5 rounded-full text-xs font-semibold text-white"
             style={{ background: "#1447e6" }}
           >
@@ -175,7 +209,7 @@ export default function Home() {
       </nav>
 
       {/* ── HERO ── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative flex items-center justify-center overflow-hidden min-h-screen" style={{ minHeight: "100svh" }}>
         <div className="absolute inset-0 opacity-30">
           <WebGLShader />
         </div>
@@ -207,7 +241,7 @@ export default function Home() {
 
           <div className="animate-fade-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <a
-              href="#contact"
+              href="/intake"
               className="flex items-center justify-center gap-2 h-13 px-8 rounded-full font-semibold text-base text-white w-full sm:w-auto transition-all duration-200 hover:opacity-90 hover:scale-[1.04] active:scale-[0.97]"
               style={{ background: "#1447e6", boxShadow: "0 0 40px rgba(20,71,230,0.5)" }}
             >
@@ -341,7 +375,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-display font-semibold text-white text-base sm:text-lg mb-2">{s.title}</h3>
                 <p className="text-sm text-white/50 leading-relaxed" style={{ fontFamily: "var(--font-inter)" }}>{s.desc}</p>
-                <div className="mt-5 sm:mt-6 flex items-center gap-1.5 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "#3b6fff" }}>
+                <div className="mt-5 sm:mt-6 flex items-center gap-1.5 text-xs font-medium opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity" style={{ color: "#3b6fff" }}>
                   Learn more
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M2 6h8M6 2l4 4-4 4"/>
@@ -363,7 +397,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-4 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-4 relative">
             {/* Connector line — desktop only */}
             <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px" style={{ background: "linear-gradient(to right, transparent, rgba(20,71,230,0.4), rgba(20,71,230,0.4), transparent)" }}/>
 
@@ -395,7 +429,7 @@ export default function Home() {
               No bloated teams, no offshore handoffs. You work directly with senior designers and engineers who genuinely care about your outcomes.
             </p>
             <a
-              href="#contact"
+              href="/intake"
               className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-full font-semibold text-sm text-white transition-all hover:opacity-90 hover:scale-[1.02]"
               style={{ background: "#1447e6", boxShadow: "0 0 24px rgba(20,71,230,0.35)" }}
             >
@@ -421,81 +455,118 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CONTACT / CTA ── */}
+
+      {/* ── CONTACT ── */}
       <section id="contact" className="relative z-10 py-14 sm:py-20 md:py-28 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
-          <div
-            className="relative rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 text-center overflow-hidden noise"
-            style={{
-              background: "linear-gradient(135deg, rgba(20,71,230,0.2) 0%, rgba(20,71,230,0.05) 100%)",
-              border: "1px solid rgba(20,71,230,0.25)",
-              boxShadow: "0 0 80px rgba(20,71,230,0.15), inset 0 1px 0 rgba(255,255,255,0.06)",
-            }}
-          >
-            <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(20,71,230,0.25) 0%, transparent 60%)" }}/>
+          <div className="text-center mb-10 sm:mb-12">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-3 sm:mb-4" style={{ color: "#1447e6" }}>Get in Touch</p>
+            <h2 className="font-display font-bold text-white text-3xl sm:text-4xl md:text-5xl tracking-tight" style={{ letterSpacing: "-0.02em" }}>
+              Have a question?<br />Let&apos;s talk.
+            </h2>
+            <p className="text-white/55 text-sm sm:text-base mt-4 sm:mt-5 max-w-lg mx-auto leading-relaxed" style={{ fontFamily: "var(--font-inter)" }}>
+              Drop us a message and we&apos;ll respond within 24 hours. Ready to start a project? <a href="/intake" style={{ color: "#3b6fff" }}>Use the intake form →</a>
+            </p>
+          </div>
 
-            <div className="relative">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-3 sm:mb-4" style={{ color: "#3b6fff" }}>Ready to Start?</p>
-              <h2 className="font-display font-extrabold text-white text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 tracking-tight" style={{ letterSpacing: "-0.03em" }}>
-                Let&apos;s build something<br />remarkable.
-              </h2>
-              <p className="text-white/60 mb-7 sm:mb-10 max-w-lg mx-auto text-sm sm:text-base" style={{ fontFamily: "var(--font-inter)" }}>
-                Tell us about your project. We&apos;ll reply within 24 hours with ideas, timelines, and honest pricing.
-              </p>
+          {contactSent ? (
+            <div
+              className="rounded-2xl p-8 sm:p-10 text-center"
+              style={{ background: "rgba(20,71,230,0.08)", border: "1px solid rgba(20,71,230,0.25)" }}
+            >
+              <div style={{ width: 56, height: 56, borderRadius: "50%", background: "rgba(20,71,230,0.15)", border: "1px solid rgba(20,71,230,0.4)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b6fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              </div>
+              <h3 className="font-display font-bold text-white text-xl sm:text-2xl mb-2" style={{ letterSpacing: "-0.02em" }}>Message received</h3>
+              <p className="text-white/55 text-sm" style={{ fontFamily: "var(--font-inter)" }}>We&apos;ll get back to you within 24 hours.</p>
+            </div>
+          ) : (
+            <form
+              onSubmit={submitContact}
+              className="rounded-2xl p-6 sm:p-8 flex flex-col gap-4"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              {/* Honeypot */}
+              <input
+                type="text"
+                name="website"
+                value={contactHoneypot}
+                onChange={e => setContactHoneypot(e.target.value)}
+                tabIndex={-1}
+                aria-hidden="true"
+                style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+              />
 
-              {formSent ? (
-                <div className="max-w-md mx-auto py-8 flex flex-col items-center gap-4">
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: "rgba(20,71,230,0.15)", border: "1px solid rgba(20,71,230,0.35)" }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b6fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20 6L9 17l-5-5"/>
-                    </svg>
-                  </div>
-                  <p className="font-display font-bold text-white text-lg">Message sent!</p>
-                  <p className="text-white/50 text-sm text-center" style={{ fontFamily: "var(--font-inter)" }}>
-                    We&apos;ll get back to you within 24 hours.
-                  </p>
-                </div>
-              ) : (
-                <form
-                  className="flex flex-col gap-3 sm:gap-4 max-w-md mx-auto"
-                  onSubmit={(e) => { e.preventDefault(); setFormSent(true) }}
+              <div>
+                <label style={contactLabelStyle}>Your Name</label>
+                <input
+                  required
+                  value={contact.name}
+                  onChange={e => setC("name", e.target.value)}
+                  placeholder="Jane Smith"
+                  style={contactInputStyle}
+                />
+              </div>
+
+              <div>
+                <label style={contactLabelStyle}>Email</label>
+                <input
+                  required
+                  type="email"
+                  value={contact.email}
+                  onChange={e => setC("email", e.target.value)}
+                  placeholder="you@yourbusiness.com"
+                  style={contactInputStyle}
+                />
+              </div>
+
+              <div>
+                <label style={contactLabelStyle}>Phone <span style={{ color: "rgba(255,255,255,0.3)", fontWeight: 400 }}>(optional)</span></label>
+                <PhoneInput value={contact.phone} onChange={v => setC("phone", v)} />
+              </div>
+
+              <div>
+                <label style={contactLabelStyle}>Message</label>
+                <textarea
+                  required
+                  value={contact.message}
+                  onChange={e => setC("message", e.target.value)}
+                  placeholder="Tell us a bit about what you're looking for…"
+                  rows={4}
+                  maxLength={5000}
+                  style={{ ...contactInputStyle, resize: "none" }}
+                />
+              </div>
+
+              {contactError && (
+                <div
+                  style={{
+                    padding: "11px 14px", borderRadius: 10,
+                    background: "rgba(239,68,68,0.08)",
+                    border: "1px solid rgba(239,68,68,0.25)",
+                    color: "#fca5a5", fontSize: 13,
+                  }}
                 >
-                  <input
-                    type="text"
-                    placeholder="Your name"
-                    required
-                    className="h-11 sm:h-12 px-4 rounded-xl bg-white/[0.06] border border-white/10 text-white placeholder:text-white/30 text-sm outline-none focus:border-[#1447e6]/60 transition-colors"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email address"
-                    required
-                    className="h-11 sm:h-12 px-4 rounded-xl bg-white/[0.06] border border-white/10 text-white placeholder:text-white/30 text-sm outline-none focus:border-[#1447e6]/60 transition-colors"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  />
-                  <textarea
-                    placeholder="Tell us about your project..."
-                    rows={4}
-                    required
-                    className="px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white placeholder:text-white/30 text-sm outline-none focus:border-[#1447e6]/60 transition-colors resize-none"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  />
-                  <button
-                    type="submit"
-                    className="h-11 sm:h-12 rounded-xl font-semibold text-sm text-white transition-all hover:opacity-90 active:scale-[0.99]"
-                    style={{ background: "#1447e6", boxShadow: "0 0 30px rgba(20,71,230,0.4)" }}
-                  >
-                    Send Message →
-                  </button>
-                </form>
+                  {contactError}
+                </div>
               )}
 
-              <p className="text-xs text-white/30 mt-5 sm:mt-6" style={{ fontFamily: "var(--font-inter)" }}>
-                No spam. No retainers unless it makes sense. Just honest work.
-              </p>
-            </div>
-          </div>
+              <button
+                type="submit"
+                disabled={contactSending || !contact.name || !contact.email || !contact.message}
+                className="mt-2 transition-all hover:opacity-90 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{
+                  background: "#1447e6", color: "#fff",
+                  border: "none", borderRadius: 12,
+                  padding: "14px 24px", fontSize: 15, fontWeight: 800,
+                  cursor: "pointer",
+                  boxShadow: "0 0 28px rgba(20,71,230,0.35)",
+                }}
+              >
+                {contactSending ? "Sending…" : "Send Message →"}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
@@ -503,8 +574,8 @@ export default function Home() {
       <footer className="relative z-10 border-t border-white/[0.06] px-4 sm:px-6 py-10 sm:py-12">
         <div className="max-w-6xl mx-auto">
           {/* Top row */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10">
-            <div className="col-span-2 sm:col-span-2">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8">
+            <div>
               <div className="flex items-center gap-2 mb-3 sm:mb-4">
                 <svg width="26" height="26" viewBox="0 0 30 30" fill="none">
                   <rect width="30" height="30" rx="7" fill="#1447e6"/>
@@ -537,18 +608,11 @@ export default function Home() {
             </div>
 
             <div>
-              <p className="text-white/80 text-sm font-semibold mb-3 sm:mb-4">Contact</p>
+              <p className="text-white/80 text-sm font-semibold mb-3 sm:mb-4">Legal</p>
               <ul className="flex flex-col gap-2 sm:gap-3">
-                {[
-                  { label: "hello@nexaweb.co", href: "mailto:hello@nexaweb.co" },
-                  { label: "Twitter / X", href: "#" },
-                  { label: "LinkedIn", href: "#" },
-                  { label: "Instagram", href: "#" },
-                ].map((l) => (
-                  <li key={l.label}>
-                    <a href={l.href} className="text-white/40 hover:text-white text-sm transition-colors" style={{ fontFamily: "var(--font-inter)" }}>{l.label}</a>
-                  </li>
-                ))}
+                <li>
+                  <a href="/terms" className="text-white/40 hover:text-white text-sm transition-colors" style={{ fontFamily: "var(--font-inter)" }}>Terms of Service</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -556,11 +620,24 @@ export default function Home() {
           {/* Bottom row */}
           <div className="mt-8 sm:mt-10 pt-6 border-t border-white/[0.06]">
             <p className="text-white/30 text-xs text-center" style={{ fontFamily: "var(--font-inter)" }}>
-              © 2025 NexaWeb. All rights reserved.
+              © 2025 NexaWeb. All rights reserved. · United States
             </p>
           </div>
         </div>
       </footer>
     </div>
   )
+}
+
+const contactLabelStyle: React.CSSProperties = {
+  display: "block", fontSize: 11, fontWeight: 700,
+  color: "rgba(255,255,255,0.4)", marginBottom: 7,
+  textTransform: "uppercase", letterSpacing: "0.06em",
+}
+const contactInputStyle: React.CSSProperties = {
+  width: "100%", padding: "11px 14px", borderRadius: 10,
+  border: "1.5px solid rgba(255,255,255,0.1)", fontSize: 16,
+  color: "#fff", background: "rgba(255,255,255,0.05)",
+  outline: "none", boxSizing: "border-box",
+  fontFamily: "var(--font-inter), system-ui, sans-serif",
 }

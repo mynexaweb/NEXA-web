@@ -80,17 +80,18 @@ export function PawCoDemo({ isOpen, onClose }: Props) {
                 <div style={{ width: 36, height: 36, borderRadius: 10, background: C.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🐾</div>
                 <span style={{ fontWeight: 800, fontSize: 17, color: C.dark, letterSpacing: "-0.01em" }}>Paw<span style={{ color: C.accent }}>&amp;Co</span></span>
               </div>
-              <div style={{ display: "flex", gap: 26, alignItems: "center" }}>
+              <div className="hidden sm:flex items-center" style={{ gap: 26 }}>
                 {["Services", "Pricing", "Gallery", "About"].map(n => (
                   <a key={n} href={`#pc-${n.toLowerCase()}`} style={{ fontSize: 13, fontWeight: 500, color: C.body, textDecoration: "none" }}>{n}</a>
                 ))}
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <a href="tel:5557427929" style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700, color: C.teal, textDecoration: "none" }}>
+                <a href="#" onClick={(e) => e.preventDefault()} className="hidden sm:flex items-center" style={{ gap: 6, fontSize: 13, fontWeight: 700, color: C.teal, textDecoration: "none" }}>
                   <Phone size={14} /> (555) 742-7929
                 </a>
                 <motion.a href="#pc-book" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }} transition={SPRING}
-                  style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "9px 20px", fontSize: 13, fontWeight: 700, display: "block" }}>
+                  className="hidden sm:block"
+                  style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "9px 20px", fontSize: 13, fontWeight: 700 }}>
                   Book Now
                 </motion.a>
                 <button onClick={onClose} style={{ background: "rgba(0,0,0,0.06)", border: "none", borderRadius: 999, width: 36, height: 36, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -126,7 +127,7 @@ export function PawCoDemo({ isOpen, onClose }: Props) {
                     style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "14px 30px", fontSize: 15, fontWeight: 800, boxShadow: "0 8px 30px rgba(194,98,42,0.45)", display: "flex", alignItems: "center", gap: 8 }}>
                     <Calendar size={16} /> Book a Groom
                   </motion.a>
-                  <motion.a href="tel:5557427929" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.96 }} transition={SPRING}
+                  <motion.a href="#" onClick={(e) => e.preventDefault()} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.96 }} transition={SPRING}
                     style={{ background: "rgba(255,255,255,0.1)", color: "white", textDecoration: "none", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 999, padding: "14px 24px", fontSize: 15, fontWeight: 600, display: "flex", alignItems: "center", gap: 8 }}>
                     <Phone size={15} /> Call Us
                   </motion.a>
@@ -319,7 +320,7 @@ export function PawCoDemo({ isOpen, onClose }: Props) {
               </motion.div>
               <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.4 }}
                 style={{ textAlign: "center", marginTop: 24, padding: 20, background: C.accentPale, borderRadius: 14, border: `1px solid rgba(194,98,42,0.15)` }}>
-                <p style={{ fontSize: 14, color: C.body, fontWeight: 600 }}>Prefer to call? <a href="tel:5557427929" style={{ color: C.accent, fontWeight: 800, textDecoration: "none" }}>📞 (555) 742-7929</a></p>
+                <p style={{ fontSize: 14, color: C.body, fontWeight: 600 }}>Prefer to call? <a href="#" onClick={(e) => e.preventDefault()} style={{ color: C.accent, fontWeight: 800, textDecoration: "none" }}>📞 (555) 742-7929</a></p>
                 <p style={{ fontSize: 12, color: C.muted, marginTop: 4 }}>Mon–Sat 8am–6pm · We love talking about dogs</p>
               </motion.div>
             </div>

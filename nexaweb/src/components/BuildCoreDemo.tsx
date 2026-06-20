@@ -60,16 +60,16 @@ export function BuildCoreDemo({ isOpen, onClose }: Props) {
                   <div style={{ fontSize: 10, color: C.muted, fontWeight: 600, letterSpacing: "0.06em" }}>GENERAL CONTRACTORS</div>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: 26, alignItems: "center" }}>
+              <div className="hidden sm:flex items-center" style={{ gap: 26 }}>
                 {["Projects", "Services", "Process", "About"].map(n => (
                   <a key={n} href={`#bc-${n.toLowerCase()}`} style={{ fontSize: 13, fontWeight: 500, color: C.body, textDecoration: "none" }}>{n}</a>
                 ))}
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <a href="tel:5554826273" style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700, color: C.accent, textDecoration: "none" }}>
+                <a href="#" onClick={(e) => e.preventDefault()} className="hidden sm:flex items-center" style={{ gap: 6, fontSize: 13, fontWeight: 700, color: C.accent, textDecoration: "none" }}>
                   <Phone size={14} /> (555) 482-6273
                 </a>
-                <a href="#bc-quote" style={{ background: C.accent, color: "#0f0d08", textDecoration: "none", borderRadius: 999, padding: "9px 18px", fontSize: 13, fontWeight: 800 }}>Free Quote</a>
+                <a href="#bc-quote" className="hidden sm:block" style={{ background: C.accent, color: "#0f0d08", textDecoration: "none", borderRadius: 999, padding: "9px 18px", fontSize: 13, fontWeight: 800 }}>Free Quote</a>
                 <button onClick={onClose} style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 999, width: 36, height: 36, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <X size={16} color="white" />
                 </button>

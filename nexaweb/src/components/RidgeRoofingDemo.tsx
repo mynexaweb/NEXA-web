@@ -55,7 +55,7 @@ export function RidgeRoofingDemo({ isOpen, onClose }: Props) {
           {/* EMERGENCY BAR */}
           <div style={{ background: C.accent, padding: "10px 20px", textAlign: "center" }}>
             <span style={{ fontSize: 13, fontWeight: 800, color: "white" }}>
-              ⛈️ Storm damage? Don't wait — call NOW: <a href="tel:5552478763" style={{ color: "white", textDecoration: "underline" }}>(555) 247-ROOF</a> · 24/7 Emergency Response
+              ⛈️ Storm damage? Don't wait — call NOW: <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", textDecoration: "underline" }}>(555) 247-ROOF</a> · 24/7 Emergency Response
             </span>
           </div>
 
@@ -69,16 +69,16 @@ export function RidgeRoofingDemo({ isOpen, onClose }: Props) {
                   <div style={{ fontSize: 10, color: C.muted, fontWeight: 600, letterSpacing: "0.05em" }}>Licensed · Insured · Since 2002</div>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: 26, alignItems: "center" }}>
+              <div className="hidden sm:flex items-center" style={{ gap: 26 }}>
                 {["Services", "Gallery", "Reviews", "Contact"].map(n => (
                   <a key={n} href={`#rr-${n.toLowerCase()}`} style={{ fontSize: 13, fontWeight: 500, color: C.body, textDecoration: "none" }}>{n}</a>
                 ))}
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <a href="tel:5552478763" style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700, color: C.accent, textDecoration: "none" }}>
+                <a href="#" onClick={(e) => e.preventDefault()} className="hidden sm:flex items-center" style={{ gap: 6, fontSize: 13, fontWeight: 700, color: C.accent, textDecoration: "none" }}>
                   <Phone size={14} /> (555) 247-ROOF
                 </a>
-                <a href="#rr-quote" style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "9px 18px", fontSize: 13, fontWeight: 700 }}>Free Inspection</a>
+                <a href="#rr-quote" className="hidden sm:block" style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "9px 18px", fontSize: 13, fontWeight: 700 }}>Free Inspection</a>
                 <button onClick={onClose} style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 999, width: 36, height: 36, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <X size={16} color="white" />
                 </button>
@@ -122,7 +122,7 @@ export function RidgeRoofingDemo({ isOpen, onClose }: Props) {
                 <a href="#rr-quote" style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 12, padding: "16px 32px", fontSize: 16, fontWeight: 900, boxShadow: "0 8px 36px rgba(249,115,22,0.45)", display: "flex", alignItems: "center", gap: 8 }}>
                   Get FREE Roof Inspection <ArrowRight size={16} />
                 </a>
-                <a href="tel:5552478763" style={{ background: "rgba(255,255,255,0.08)", color: C.text, textDecoration: "none", border: `1px solid ${C.border}`, borderRadius: 12, padding: "16px 24px", fontSize: 16, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+                <a href="#" onClick={(e) => e.preventDefault()} style={{ background: "rgba(255,255,255,0.08)", color: C.text, textDecoration: "none", border: `1px solid ${C.border}`, borderRadius: 12, padding: "16px 24px", fontSize: 16, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
                   <Phone size={16} /> Call 24/7
                 </a>
               </div>
@@ -241,7 +241,7 @@ export function RidgeRoofingDemo({ isOpen, onClose }: Props) {
                 </div>
               </div>
               <div style={{ textAlign: "center", marginTop: 20 }}>
-                <p style={{ fontSize: 14, color: C.body }}>Emergency? Call us right now: <a href="tel:5552478763" style={{ color: C.accent, fontWeight: 800, textDecoration: "none" }}>(555) 247-ROOF</a></p>
+                <p style={{ fontSize: 14, color: C.body }}>Emergency? Call us right now: <a href="#" onClick={(e) => e.preventDefault()} style={{ color: C.accent, fontWeight: 800, textDecoration: "none" }}>(555) 247-ROOF</a></p>
                 <p style={{ fontSize: 12, color: C.muted, marginTop: 4 }}>Available 24/7 for storm emergencies</p>
               </div>
             </div>

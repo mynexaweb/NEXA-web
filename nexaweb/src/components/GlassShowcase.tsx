@@ -49,13 +49,12 @@ function CallPanel() {
   const contacts = [
     { label: "Main Line",  value: "+44 20 7946 0000", icon: "📞", action: "tel:+442079460000" },
     { label: "WhatsApp",   value: "+44 7700 900 000", icon: "💬", action: "#" },
-    { label: "Email",      value: "hello@aura.co.uk", icon: "✉️",  action: "mailto:hello@aura.co.uk" },
     { label: "Reception",  value: "+44 20 7946 0001", icon: "🏨", action: "tel:+442079460001" },
   ];
   return (
     <div className="flex flex-col gap-2.5 w-full">
       {contacts.map((c) => (
-        <a key={c.label} href={c.action}>
+        <a key={c.label} href="#" onClick={(e) => e.preventDefault()}>
           <GlassEffect className="rounded-2xl px-4 py-3 hover:ring-1 hover:ring-white/20 transition-all">
             <div className="flex items-center gap-3 w-full">
               <span className="text-xl">{c.icon}</span>

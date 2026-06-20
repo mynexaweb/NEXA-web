@@ -7,10 +7,11 @@ const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
   // Prevents MIME-type sniffing attacks
   { key: "X-Content-Type-Options", value: "nosniff" },
-  // Controls referrer info sent to external sites
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  // HSTS: enforce HTTPS for 2 years, all subdomains, allow preload list inclusion
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+  { key: "Cross-Origin-Opener-Policy",   value: "same-origin" },
+  { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
+  { key: "Cross-Origin-Embedder-Policy", value: "require-corp" },
   // Restrict browser feature APIs — deny everything not explicitly needed
   {
     key: "Permissions-Policy",
@@ -35,7 +36,7 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      // unsafe-eval removed in production; Next.js/Framer Motion need it only in dev
+      "upgrade-insecure-requests",
       isDev
         ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
         : "script-src 'self' 'unsafe-inline'",
@@ -57,6 +58,16 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Hard-disable browser source maps in production — without these there's no
+  // way to map the minified bundles back to readable source.
+  productionBrowserSourceMaps: false,
+
+  // Strip every console.* call out of production bundles (keep .error so real
+  // crashes still surface in monitoring).
+  compiler: {
+    removeConsole: { exclude: ["error"] },
+  },
+
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

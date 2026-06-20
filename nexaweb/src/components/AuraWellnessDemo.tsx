@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X, Menu, AlertTriangle, ArrowRight, Leaf, Flame,
-  Star, CheckCircle, MapPin, Phone, Mail, ChevronDown,
+  Star, CheckCircle, MapPin, Phone, ChevronDown,
   Globe, MessageCircle, Share2, Heart, Activity,
   Clock, Users, Quote, Zap, Shield, Calendar, Gift,
 } from "lucide-react";
@@ -728,7 +728,6 @@ export function AuraWellnessDemo({ isOpen, onClose }: AuraWellnessDemoProps) {
                 {/* Contact info */}
                 <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8 mt-10" style={{ color: C.muted }}>
                   <div className="flex items-center gap-2 text-sm"><Phone size={13} /><span>(555) 241-8830</span></div>
-                  <div className="flex items-center gap-2 text-sm"><Mail size={13} /><span>hello@aurawellness.co</span></div>
                   <div className="flex items-center gap-2 text-sm"><MapPin size={13} /><span>48 Garden Mews, New York</span></div>
                 </div>
               </div>

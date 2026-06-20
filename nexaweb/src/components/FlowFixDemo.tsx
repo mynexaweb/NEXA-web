@@ -53,7 +53,7 @@ export function FlowFixDemo({ isOpen, onClose }: Props) {
           {/* TOP BAR */}
           <div style={{ background: C.accent, padding: "10px 20px", textAlign: "center" }}>
             <span style={{ fontSize: 13, fontWeight: 800, color: "white" }}>
-              🔧 24/7 EMERGENCY LINE — Call Now: <a href="tel:5553562394" style={{ color: "white", textDecoration: "underline" }}>(555) FLO-WFIX</a> · We Answer Every Call
+              🔧 24/7 EMERGENCY LINE — Call Now: <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", textDecoration: "underline" }}>(555) FLO-WFIX</a> · We Answer Every Call
             </span>
           </div>
 
@@ -67,13 +67,13 @@ export function FlowFixDemo({ isOpen, onClose }: Props) {
                   <div style={{ fontSize: 10, color: C.accent, fontWeight: 700, letterSpacing: "0.05em" }}>MASTER PLUMBERS</div>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: 26, alignItems: "center" }}>
+              <div className="hidden sm:flex items-center" style={{ gap: 26 }}>
                 {["Services", "Pricing", "Book Online", "Reviews"].map(n => (
                   <a key={n} href={`#ff-${n.toLowerCase().replace(" ", "-")}`} style={{ fontSize: 13, fontWeight: 500, color: C.body, textDecoration: "none" }}>{n}</a>
                 ))}
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <a href="tel:5553562394" style={{ display: "flex", alignItems: "center", gap: 6, background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "9px 18px", fontSize: 13, fontWeight: 800 }}>
+                <a href="#" onClick={(e) => e.preventDefault()} className="hidden sm:flex items-center" style={{ gap: 6, background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "9px 18px", fontSize: 13, fontWeight: 800 }}>
                   <Phone size={14} /> Call Now
                 </a>
                 <button onClick={onClose} style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 999, width: 36, height: 36, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -115,7 +115,7 @@ export function FlowFixDemo({ isOpen, onClose }: Props) {
                   Same-day service. Upfront pricing. Master-licensed plumbers. No emergency is too big or too small — we fix it right the first time.
                 </p>
                 {/* BIG PHONE NUMBER */}
-                <a href="tel:5553562394" style={{ display: "flex", alignItems: "center", gap: 14, background: C.accent, color: "white", textDecoration: "none", borderRadius: 16, padding: "20px 32px", fontSize: "1.6rem", fontWeight: 900, boxShadow: "0 8px 40px rgba(14,165,233,0.4)", letterSpacing: "-0.01em", marginBottom: 14, width: "fit-content" }}>
+                <a href="#" onClick={(e) => e.preventDefault()} style={{ display: "flex", alignItems: "center", gap: 14, background: C.accent, color: "white", textDecoration: "none", borderRadius: 16, padding: "20px 32px", fontSize: "1.6rem", fontWeight: 900, boxShadow: "0 8px 40px rgba(14,165,233,0.4)", letterSpacing: "-0.01em", marginBottom: 14, width: "fit-content" }}>
                   <Phone size={26} /> (555) FLO-WFIX
                 </a>
                 <a href="#ff-book-online" style={{ display: "inline-flex", alignItems: "center", gap: 8, color: C.accent, textDecoration: "none", fontSize: 15, fontWeight: 700, border: `1px solid ${C.borderMed}`, borderRadius: 12, padding: "12px 22px" }}>
@@ -249,7 +249,7 @@ export function FlowFixDemo({ isOpen, onClose }: Props) {
               </div>
               <div style={{ textAlign: "center", marginTop: 24 }}>
                 <p style={{ fontSize: 16, color: C.body, fontWeight: 700 }}>Emergency right now? Don&apos;t wait.</p>
-                <a href="tel:5553562394" style={{ display: "inline-flex", alignItems: "center", gap: 10, color: "white", textDecoration: "none", background: C.accent, borderRadius: 12, padding: "14px 30px", fontSize: "1.2rem", fontWeight: 900, marginTop: 12, boxShadow: "0 6px 24px rgba(14,165,233,0.35)" }}>
+                <a href="#" onClick={(e) => e.preventDefault()} style={{ display: "inline-flex", alignItems: "center", gap: 10, color: "white", textDecoration: "none", background: C.accent, borderRadius: 12, padding: "14px 30px", fontSize: "1.2rem", fontWeight: 900, marginTop: 12, boxShadow: "0 6px 24px rgba(14,165,233,0.35)" }}>
                   <Phone size={20} /> (555) FLO-WFIX
                 </a>
               </div>

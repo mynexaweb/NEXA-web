@@ -68,7 +68,7 @@ export function VelaDemo({ isOpen, onClose }: Props) {
               <span style={{ fontSize: 11, color: "rgba(255,255,255,0.8)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Free shipping on orders over $150 · Free 30-day returns</span>
             </div>
             <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
+              <div className="hidden sm:flex items-center" style={{ gap: 28 }}>
                 {["Women", "Men", "Collections", "Sale"].map(n => (
                   <span key={n} style={{ fontSize: 13, fontWeight: 400, color: C.body, cursor: "pointer", fontFamily: "'system-ui',sans-serif", letterSpacing: "0.04em" }}>{n}</span>
                 ))}
@@ -269,7 +269,7 @@ export function VelaDemo({ isOpen, onClose }: Props) {
           {/* FOOTER */}
           <footer style={{ background: C.dark, padding: "40px 24px", textAlign: "center" }}>
             <div style={{ fontSize: 24, fontWeight: 700, color: "white", letterSpacing: "-0.04em", marginBottom: 8 }}>VELA</div>
-            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 12, fontFamily: "sans-serif" }}>London · New York · Paris · hello@velastudio.co</p>
+            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 12, fontFamily: "sans-serif" }}>London · New York · Paris</p>
             <p style={{ color: "rgba(255,255,255,0.18)", fontSize: 11, marginTop: 10, fontFamily: "sans-serif" }}>Demo site by NexaWeb · Not a real business</p>
           </footer>
         </motion.div>

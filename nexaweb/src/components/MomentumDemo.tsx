@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   X, Menu, AlertTriangle, Dumbbell, Users, Clock, ArrowRight,
   Flame, Zap, Heart, Activity, Target, Leaf,
-  Star, CheckCircle, MapPin, Phone, Mail, ChevronDown,
+  Star, CheckCircle, MapPin, Phone, ChevronDown,
   Trophy, Shield, Globe, MessageCircle, Share2, Play, Quote,
 } from "lucide-react";
 import { Spotlight } from "@/components/ui/spotlight";
@@ -680,7 +680,6 @@ export function MomentumDemo({ isOpen, onClose }: MomentumDemoProps) {
                 </div>
                 <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8 text-white/30 text-sm">
                   <div className="flex items-center gap-2"><Phone size={13} /><span>(555) 483-2291</span></div>
-                  <div className="flex items-center gap-2"><Mail size={13} /><span>hello@momentumfit.com</span></div>
                   <div className="flex items-center gap-2"><MapPin size={13} /><span>1240 Commerce Blvd, Austin TX</span></div>
                 </div>
               </motion.div>

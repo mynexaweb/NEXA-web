@@ -1,0 +1,3 @@
+Contact: mailto:mynexaweb@gmail.com
+Preferred-Languages: en
+Policy: If you discover a security vulnerability, please email us directly. We appreciate responsible disclosure and will respond within 48 hours.

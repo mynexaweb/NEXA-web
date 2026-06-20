@@ -78,16 +78,16 @@ export function MeridianHealthDemo({ isOpen, onClose }: Props) {
                   <div style={{ fontSize: 9, color: C.muted, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>HIPAA Compliant · Trusted Care</div>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: 26 }}>
+              <div className="hidden sm:flex" style={{ gap: 26 }}>
                 {["Find a Doctor", "Specialties", "Telehealth", "Patient Portal"].map(n => (
                   <a key={n} href={`#mh-${n.toLowerCase().replace(/ /g, "-")}`} style={{ fontSize: 13, fontWeight: 500, color: C.body, textDecoration: "none" }}>{n}</a>
                 ))}
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <a href="tel:5554637426" style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700, color: C.accent, textDecoration: "none" }}>
+                <a href="#" onClick={(e) => e.preventDefault()} className="hidden sm:flex items-center" style={{ gap: 6, fontSize: 13, fontWeight: 700, color: C.accent, textDecoration: "none" }}>
                   <Phone size={13} /> (555) 463-7426
                 </a>
-                <a href="#mh-book" style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "9px 18px", fontSize: 13, fontWeight: 700 }}>Book Appointment</a>
+                <a href="#mh-book" className="hidden sm:block" style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "9px 18px", fontSize: 13, fontWeight: 700 }}>Book Appointment</a>
                 <button onClick={onClose} style={{ background: "rgba(12,110,245,0.08)", border: "none", borderRadius: 999, width: 36, height: 36, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <X size={16} color={C.dark} />
                 </button>
@@ -284,7 +284,7 @@ export function MeridianHealthDemo({ isOpen, onClose }: Props) {
                   <Video size={16} /> Start Telehealth Now
                 </button>
               </div>
-              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 13, marginTop: 20 }}>📞 Prefer to call? <a href="tel:5554637426" style={{ color: "white", fontWeight: 700 }}>(555) 463-7426</a></p>
+              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 13, marginTop: 20 }}>📞 Prefer to call? <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "white", fontWeight: 700 }}>(555) 463-7426</a></p>
             </div>
           </section>
 

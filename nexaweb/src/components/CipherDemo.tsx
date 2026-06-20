@@ -64,15 +64,15 @@ export function CipherDemo({ isOpen, onClose }: Props) {
                   </div>
                   <span style={{ fontWeight: 800, fontSize: 18, color: C.text, letterSpacing: "-0.03em" }}>Cipher</span>
                 </div>
-                <div style={{ display: "flex", gap: 24 }}>
+                <div className="hidden sm:flex" style={{ gap: 24 }}>
                   {["Personal", "Business", "Pricing", "Security"].map(n => (
                     <span key={n} style={{ fontSize: 13, fontWeight: 500, color: C.body, cursor: "pointer" }}>{n}</span>
                   ))}
                 </div>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <span style={{ fontSize: 13, fontWeight: 500, color: C.body, cursor: "pointer" }}>Log in</span>
-                <button style={{ background: C.accent, color: "white", border: "none", borderRadius: 8, padding: "9px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Open Account →</button>
+                <span className="hidden sm:inline" style={{ fontSize: 13, fontWeight: 500, color: C.body, cursor: "pointer" }}>Log in</span>
+                <button className="hidden sm:block" style={{ background: C.accent, color: "white", border: "none", borderRadius: 8, padding: "9px 20px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Open Account →</button>
                 <button onClick={onClose} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 999, width: 36, height: 36, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <X size={16} color="white" />
                 </button>

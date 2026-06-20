@@ -63,16 +63,16 @@ export function AutoForgeDemo({ isOpen, onClose }: Props) {
                   <div style={{ fontSize: 10, color: C.muted, fontWeight: 600, letterSpacing: "0.06em" }}>ASE CERTIFIED AUTO REPAIR</div>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+              <div className="hidden sm:flex items-center" style={{ gap: 24 }}>
                 {["Services", "Specials", "Book Online", "Reviews"].map(n => (
                   <a key={n} href={`#af-${n.toLowerCase().replace(" ", "-")}`} style={{ fontSize: 13, fontWeight: 500, color: C.body, textDecoration: "none" }}>{n}</a>
                 ))}
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <a href="tel:5554286743" style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700, color: C.accent, textDecoration: "none" }}>
+                <a href="#" onClick={(e) => e.preventDefault()} className="hidden sm:flex items-center" style={{ gap: 6, fontSize: 13, fontWeight: 700, color: C.accent, textDecoration: "none" }}>
                   <Phone size={14} /> (555) 428-6743
                 </a>
-                <a href="#af-book-online" style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "9px 18px", fontSize: 13, fontWeight: 700 }}>Book Service</a>
+                <a href="#af-book-online" className="hidden sm:block" style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 999, padding: "9px 18px", fontSize: 13, fontWeight: 700 }}>Book Service</a>
                 <button onClick={onClose} style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 999, width: 36, height: 36, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <X size={16} color="white" />
                 </button>
@@ -117,7 +117,7 @@ export function AutoForgeDemo({ isOpen, onClose }: Props) {
                   <a href="#af-book-online" style={{ background: C.accent, color: "white", textDecoration: "none", borderRadius: 12, padding: "15px 30px", fontSize: 15, fontWeight: 800, boxShadow: "0 8px 30px rgba(220,38,38,0.4)", display: "flex", alignItems: "center", gap: 8 }}>
                     <Calendar size={16} /> Book Service Online
                   </a>
-                  <a href="tel:5554286743" style={{ background: "rgba(255,255,255,0.07)", color: C.text, textDecoration: "none", border: `1px solid ${C.border}`, borderRadius: 12, padding: "15px 22px", fontSize: 15, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+                  <a href="#" onClick={(e) => e.preventDefault()} style={{ background: "rgba(255,255,255,0.07)", color: C.text, textDecoration: "none", border: `1px solid ${C.border}`, borderRadius: 12, padding: "15px 22px", fontSize: 15, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
                     <Phone size={15} /> Call Us
                   </a>
                 </div>
