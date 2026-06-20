@@ -75,7 +75,7 @@ const AREAS = [
 
 const WHY = [
   { title: "Free written estimates",     body: "On-site walk-through, line-item quote, no pressure. We don't start until you sign off." },
-  { title: "Licensed & insured",         body: "CSLB-licensed general contractor. Workers comp + $2M liability — your home is covered." },
+  { title: "20 years in the trade",      body: "9 years working under another general contractor, plus 11 running this business. Edgar has seen every kind of job and every kind of mistake." },
   { title: "On-schedule guarantee",      body: "We hit the date we promise. If we're late on our end, we discount the labor." },
   { title: "Cleanup included",           body: "We sweep, vacuum, and haul off debris every day. You shouldn't have to live in a job site." },
 ]
@@ -132,8 +132,7 @@ export default function AffordableHandymanPage() {
       <header style={stickyHdr}>
         <div style={{ maxWidth: 1180, margin: "0 auto", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
           <a href="#top" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: C.ink }}>
-            <span style={logoMark}>AHR</span>
-            <span style={{ fontWeight: 900, fontSize: 14, letterSpacing: "-0.01em" }} className="hide-mobile">
+            <span style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif", fontWeight: 900, fontSize: 15, letterSpacing: "-0.01em", color: C.ink }}>
               {BIZ.name}
             </span>
           </a>
@@ -216,28 +215,6 @@ export default function AffordableHandymanPage() {
                 </div>
               </div>
             </a>
-            <div style={jobSlip}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-                <span style={{ fontSize: 10, fontWeight: 800, color: C.body, letterSpacing: "0.15em" }}>JOB #1847</span>
-                <span style={{ fontSize: 10, fontWeight: 700, color: C.live, letterSpacing: "0.1em" }}>● COMPLETE</span>
-              </div>
-              <div style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif", fontSize: 17, fontWeight: 800, color: C.ink, marginBottom: 4 }}>Kitchen remodel — Mid-Wilshire</div>
-              <div style={{ fontSize: 12, color: C.body, marginBottom: 10 }}>Cabinets, quartz counters, backsplash, recessed lighting</div>
-              <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 10, borderTop: `1px solid ${C.line}` }}>
-                <div>
-                  <div style={{ fontSize: 9, color: C.body, fontWeight: 700, letterSpacing: "0.1em" }}>FINISHED</div>
-                  <div style={{ fontSize: 13, fontWeight: 800, color: C.ink }}>11 days</div>
-                </div>
-                <div>
-                  <div style={{ fontSize: 9, color: C.body, fontWeight: 700, letterSpacing: "0.1em" }}>vs QUOTE</div>
-                  <div style={{ fontSize: 13, fontWeight: 800, color: C.accent }}>$0 over</div>
-                </div>
-                <div>
-                  <div style={{ fontSize: 9, color: C.body, fontWeight: 700, letterSpacing: "0.1em" }}>RATING</div>
-                  <div style={{ fontSize: 13, fontWeight: 800, color: C.ink }}>★ 5.0</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -347,7 +324,7 @@ export default function AffordableHandymanPage() {
               &ldquo;{BIZ.story}&rdquo;
             </p>
             <div style={{ fontWeight: 800, fontSize: 14, color: C.ink }}>{BIZ.ownerFirst} {BIZ.ownerLast}</div>
-            <div style={{ fontSize: 12, color: C.body }}>Owner &middot; {new Date().getFullYear() - BIZ.yearStarted} yrs in business &middot; {BIZ.priorYears + (new Date().getFullYear() - BIZ.yearStarted)} yrs in the trade</div>
+            <div style={{ fontSize: 12, color: C.body }}>Owner &middot; {new Date().getFullYear() - BIZ.yearStarted} yrs in business</div>
           </div>
         </div>
       </section>
@@ -441,13 +418,12 @@ export default function AffordableHandymanPage() {
             </div>
             <div style={{ fontSize: 12, color: "#9ca3af", marginBottom: 16 }}>{BIZ.tag}</div>
             <p style={{ fontSize: 13, color: "#9ca3af", lineHeight: 1.65, maxWidth: 280 }}>
-              Licensed, insured, and bonded general contractor serving {BIZ.city} since {BIZ.yearStarted}.
+              {BIZ.city} general contractor &middot; serving the area since {BIZ.yearStarted}.
             </p>
           </div>
           <div>
             <div style={footerLabel}>Contact</div>
-            <a href={`tel:${BIZ.phoneTel}`} style={{ display: "block", color: "#fff", fontWeight: 800, fontSize: 18, textDecoration: "none", marginBottom: 6 }}>{BIZ.phone}</a>
-            <a href={`mailto:${BIZ.email}`} style={{ display: "block", color: "#9ca3af", fontSize: 13, textDecoration: "none" }}>{BIZ.email}</a>
+            <a href={`tel:${BIZ.phoneTel}`} style={{ display: "block", color: "#fff", fontWeight: 800, fontSize: 18, textDecoration: "none" }}>{BIZ.phone}</a>
           </div>
           <div>
             <div style={footerLabel}>Hours</div>
@@ -462,7 +438,7 @@ export default function AffordableHandymanPage() {
           </div>
         </div>
         <div style={{ maxWidth: 1180, margin: "32px auto 0", paddingTop: 22, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-          <div style={{ fontSize: 12, color: "#6b7280" }}>© {new Date().getFullYear()} {BIZ.name}. CSLB Licensed · Bonded · Insured.</div>
+          <div style={{ fontSize: 12, color: "#6b7280" }}>© {new Date().getFullYear()} {BIZ.name}.</div>
           <div style={{ fontSize: 12, color: "#6b7280" }}>
             Designed &amp; built by <Link href="/" style={{ color: "#9ca3af", textDecoration: "underline" }}>NexaWeb</Link>
           </div>
