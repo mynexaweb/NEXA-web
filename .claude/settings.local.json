@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(claude --version)",
+      "PowerShell(& \"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\" --version)",
+      "Bash(find /c/Users/14243 -name \"puppeteer\" -type d 2>/dev/null | head -5 *)",
+      "Read(//c/Users/14243/**)",
+      "Read(//c/Users/14243/AppData/Local/Google/Chrome/Application/**)"
+    ]
+  }
+}

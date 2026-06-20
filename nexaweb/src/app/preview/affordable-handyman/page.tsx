@@ -8,20 +8,27 @@ import Image from "next/image"
 const BIZ = {
   name:        "Affordable Home Remodels",
   tag:         "& Handyman Service",
-  phone:       "(323) 556-1358",                 // From Google/MapQuest listing
+  ownerFirst:  "Edgar",
+  ownerLast:   "R.",
+  phone:       "(323) 556-1358",
   phoneTel:    "+13235561358",
-  email:       "hello@affordablehomeremodels.com",  // SWAP if you have real one
+  email:       "hello@affordablehomeremodels.com",  // swap when you have it
   address:     "1607 N Ave 54, Los Angeles, CA 90042",
   city:        "Los Angeles",
   neighborhood:"Highland Park",
   hoursWeek:   "Mon – Sat · 7:00 AM – 7:00 PM",
   hoursSun:    "Sun · By appointment",
   yearStarted: 2015,
+  priorYears:  9,
   rating:      4.9,
-  reviewCount: "Yelp & Google",
+  reviewCount: "Yelp",
   bbb:         "A+",
-  jobsDone:    "1,800+",
-  responseSla: "Same-day",
+  jobsDone:    "Hundreds",
+  responseSla: "Free estimate",
+  // Edgar's own words from Yelp listing
+  tagline:     "Reliable handyman and remodeling at the best reasonable price. No job too small.",
+  story:       "I worked for a general contractor for 9 years and made repairs on homes that were done improperly by other contractors who took the money and performed the bare minimum. Feeling for people who lost what they worked hard to save, I built my business on prior clients who passed along my contact. I enjoy my work and focus on putting forth good quality work.",
+  promise:     "My word is my bond. Quality work at a reasonable price, within any budget.",
 }
 
 const SERVICES = [
@@ -42,12 +49,8 @@ const BEFORE_AFTER = [
   { label: "Hallway floor — Burbank",   before: "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=700&q=80", after: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" },
 ]
 
-const REVIEWS = [
-  { name: "Maria T.", area: "Pasadena",    stars: 5, text: "Fixed our kitchen cabinets that another contractor walked away from. Came on time, finished early, charged exactly what they quoted. The kind of contractor you tell your friends about." },
-  { name: "Daniel R.", area: "Burbank",    stars: 5, text: "Whole bathroom remodel in 9 days. Tile work is perfect, plumbing pressure-tested, they pulled all the permits. Clean job site every single day. I would hire them again tomorrow." },
-  { name: "Jennifer K.", area: "Mid-City", stars: 5, text: "Got three quotes for refinishing our hardwood floors. They were the most reasonable AND finished a day ahead of schedule. Honest people. Hard to find these days." },
-  { name: "Ahmed S.", area: "Glendale",    stars: 5, text: "Called them on a Saturday morning for a leaking sink. Tech showed up at 11 AM, had it fixed in under an hour, fair price. Now they're doing our laundry-room remodel." },
-]
+// Real reviews live on Yelp — link out instead of fabricating.
+const YELP_URL = "https://www.yelp.com/biz/affordable-home-remodels-and-handyman-service-los-angeles-2"
 
 const AREAS = [
   "Los Angeles", "Hollywood", "Pasadena", "Burbank", "Glendale", "Studio City",
@@ -143,7 +146,7 @@ export default function AffordableHandymanPage() {
           <div>
             <div style={liveDot}>
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: C.live, boxShadow: `0 0 10px ${C.live}` }} />
-              ANSWERING NOW · {BIZ.responseSla} response
+              FREE ESTIMATES · CALL EDGAR DIRECT
             </div>
 
             <h1 style={{
@@ -160,7 +163,7 @@ export default function AffordableHandymanPage() {
             </h1>
 
             <p style={{ fontSize: 18, lineHeight: 1.55, color: C.body, maxWidth: 500, marginBottom: 32 }}>
-              {BIZ.city} handyman and remodel contractor since {BIZ.yearStarted}. Free written estimates, no markup on materials, every job priced before we start.
+              {BIZ.tagline} Free estimate. Any budget. {BIZ.city} since {BIZ.yearStarted}.
             </p>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
@@ -180,9 +183,9 @@ export default function AffordableHandymanPage() {
                   <Star key={i} />
                 ))}
               </div>
-              <span style={{ fontSize: 14, fontWeight: 700, color: C.ink }}>
-                {BIZ.rating} <span style={{ color: C.body, fontWeight: 500 }}>· {BIZ.reviewCount} reviews on Yelp & Google</span>
-              </span>
+              <a href={YELP_URL} target="_blank" rel="noopener" style={{ fontSize: 14, fontWeight: 700, color: C.ink, textDecoration: "none" }}>
+                Read real reviews on <span style={{ color: "#d32323", fontWeight: 800 }}>Yelp</span> →
+              </a>
             </div>
           </div>
 
