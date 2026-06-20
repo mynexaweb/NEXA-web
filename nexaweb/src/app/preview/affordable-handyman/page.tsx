@@ -51,8 +51,22 @@ const BEFORE_AFTER = [
   { label: "Hallway floor — Burbank",   before: "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=700&q=80", after: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" },
 ]
 
-// Real reviews live on Yelp — link out instead of fabricating.
+// Real reviews — verbatim from Google Reviews on Edgar's listing.
 const YELP_URL = "https://www.yelp.com/biz/affordable-home-remodels-and-handyman-service-los-angeles-2"
+const REAL_REVIEWS = [
+  {
+    name: "Liz Robles",
+    when: "Google review",
+    text: "He is my go-to professional for all my indoor and outdoor home projects. He is very knowledgeable and always has great construction ideas. I am very happy with all of his work. Now I can enjoy my outdoor patio and my clutter-free, indoor, living space.",
+    reply: "Glad I can make your home more enjoyable and provide you with a great service.",
+  },
+  {
+    name: "Concepcion Diaz",
+    when: "Google review",
+    text: "Good price and fast service. Willing to work the same day on job and is flexible.",
+    reply: null as string | null,
+  },
+]
 
 const AREAS = [
   "Los Angeles", "Hollywood", "Pasadena", "Burbank", "Glendale", "Studio City",
@@ -289,25 +303,45 @@ export default function AffordableHandymanPage() {
       </section>
 
       <section style={{ padding: "70px 20px", background: C.tint, borderTop: `1px solid ${C.line}`, borderBottom: `1px solid ${C.line}` }}>
-        <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+        <div style={{ maxWidth: 880, margin: "0 auto" }}>
           <Eyebrow>What clients say</Eyebrow>
-          <h2 style={{ ...h2Style, textAlign: "center", marginBottom: 16 }}>
+          <h2 style={{ ...h2Style, marginBottom: 32 }}>
             Real reviews. <span style={{ color: C.accent }}>Real clients.</span>
           </h2>
-          <p style={{ fontSize: 16, color: C.body, lineHeight: 1.65, marginBottom: 28, maxWidth: 560, marginLeft: "auto", marginRight: "auto" }}>
-            We don&apos;t paste fake testimonials. Read every review &mdash; the good ones and the honest critiques &mdash; straight from Yelp.
-          </p>
-          <a href={YELP_URL} target="_blank" rel="noopener" style={{
-            display: "inline-flex", alignItems: "center", gap: 10,
-            padding: "16px 26px", borderRadius: 12,
-            background: "#d32323", color: "#fff", textDecoration: "none",
-            fontFamily: "var(--font-poppins), system-ui, sans-serif",
-            fontSize: 16, fontWeight: 800, letterSpacing: "0.01em",
-            boxShadow: "0 6px 20px rgba(211,35,35,0.25)",
-          }}>
-            Read reviews on Yelp →
-          </a>
-          <div style={{ marginTop: 36, padding: "26px 28px", background: "#fff", border: `1px solid ${C.line}`, borderRadius: 14, textAlign: "left" }}>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 18, marginBottom: 32 }}>
+            {REAL_REVIEWS.map(r => (
+              <article key={r.name} style={reviewCard}>
+                <div style={{ display: "flex", gap: 2, marginBottom: 12 }}>
+                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={14} />)}
+                </div>
+                <p style={{ fontSize: 14, lineHeight: 1.7, color: C.ink, marginBottom: 14 }}>&ldquo;{r.text}&rdquo;</p>
+                <div style={{ fontWeight: 800, fontSize: 13, color: C.ink }}>{r.name}</div>
+                <div style={{ fontSize: 12, color: C.body, marginBottom: r.reply ? 14 : 0 }}>{r.when}</div>
+                {r.reply && (
+                  <div style={{ marginTop: 12, padding: "10px 14px", background: C.tint, borderLeft: `3px solid ${C.accent}`, borderRadius: 4 }}>
+                    <div style={{ fontSize: 10, fontWeight: 800, color: C.accent, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 4 }}>Owner reply</div>
+                    <p style={{ fontSize: 13, color: C.body, lineHeight: 1.55, fontStyle: "italic" }}>&ldquo;{r.reply}&rdquo;</p>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+
+          <div style={{ textAlign: "center", marginBottom: 28 }}>
+            <a href={YELP_URL} target="_blank" rel="noopener" style={{
+              display: "inline-flex", alignItems: "center", gap: 10,
+              padding: "14px 24px", borderRadius: 12,
+              background: "#d32323", color: "#fff", textDecoration: "none",
+              fontFamily: "var(--font-poppins), system-ui, sans-serif",
+              fontSize: 14, fontWeight: 800, letterSpacing: "0.01em",
+              boxShadow: "0 6px 20px rgba(211,35,35,0.25)",
+            }}>
+              Read more reviews on Yelp →
+            </a>
+          </div>
+
+          <div style={{ padding: "26px 28px", background: "#fff", border: `1px solid ${C.line}`, borderRadius: 14 }}>
             <div style={{ fontSize: 11, fontWeight: 800, color: C.accent, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 10 }}>From the owner</div>
             <p style={{ fontSize: 15, color: C.ink, lineHeight: 1.7, marginBottom: 14, fontStyle: "italic" }}>
               &ldquo;{BIZ.story}&rdquo;
