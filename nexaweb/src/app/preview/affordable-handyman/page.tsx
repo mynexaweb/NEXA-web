@@ -8,15 +8,17 @@ import Image from "next/image"
 const BIZ = {
   name:        "Affordable Home Remodels",
   tag:         "& Handyman Service",
-  phone:       "(323) 555-0140",   // PLACEHOLDER — replace w/ real Yelp number
-  phoneTel:    "+13235550140",
-  email:       "hello@affordablehomeremodels.com",  // PLACEHOLDER
+  phone:       "(323) 556-1358",                 // From Google/MapQuest listing
+  phoneTel:    "+13235561358",
+  email:       "hello@affordablehomeremodels.com",  // SWAP if you have real one
+  address:     "1607 N Ave 54, Los Angeles, CA 90042",
   city:        "Los Angeles",
+  neighborhood:"Highland Park",
   hoursWeek:   "Mon – Sat · 7:00 AM – 7:00 PM",
   hoursSun:    "Sun · By appointment",
   yearStarted: 2015,
   rating:      4.9,
-  reviewCount: "200+",
+  reviewCount: "Yelp & Google",
   bbb:         "A+",
   jobsDone:    "1,800+",
   responseSla: "Same-day",
