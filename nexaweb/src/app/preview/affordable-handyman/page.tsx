@@ -31,15 +31,17 @@ const BIZ = {
   promise:     "My word is my bond. Quality work at a reasonable price, within any budget.",
 }
 
+// Services list reflects actual work shown in Edgar's Yelp photo gallery:
+// decks, fireplaces, spiral stairs, kitchens, baths, tile, hardwood, framing, roofing.
 const SERVICES = [
-  { n: "01", name: "Kitchen Remodels",        blurb: "Cabinets, counters, backsplash, lighting — turnkey kitchen rebuilds with no hidden costs.",            img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80" },
-  { n: "02", name: "Bathroom Renovations",    blurb: "Full bath remodels, tile work, vanity install, walk-in showers. ADA-accessible options available.",     img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80" },
-  { n: "03", name: "Drywall & Painting",      blurb: "Patch jobs to whole-house repaints. Interior, exterior, popcorn-ceiling removal, texture matching.",    img: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=900&q=80" },
-  { n: "04", name: "Flooring Installation",   blurb: "Hardwood, laminate, vinyl, tile. We pull permits, handle subfloor prep, and clean as we go.",          img: "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=900&q=80" },
-  { n: "05", name: "Electrical & Lighting",   blurb: "Outlets, fixtures, ceiling fans, recessed lighting, panel upgrades. Licensed work, code-compliant.",   img: "https://images.unsplash.com/photo-1565374395542-0ce18882c857?w=900&q=80" },
-  { n: "06", name: "Plumbing Fixtures",       blurb: "Faucet swaps, toilet installs, garbage disposals, leak repairs. Upfront pricing before we start.",     img: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=900&q=80" },
-  { n: "07", name: "Carpentry & Trim",        blurb: "Crown molding, baseboards, built-ins, custom shelving, door & window installation.",                    img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&q=80" },
-  { n: "08", name: "Handyman Repairs",        blurb: "Drywall holes, squeaky doors, mounted TVs, picture hanging, deck repair — the short list jobs.",        img: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=900&q=80" },
+  { n: "01", name: "Kitchen Remodels",        blurb: "Full rebuilds — white cabinets, quartz/marble counters, herringbone backsplash, recessed lighting, new flooring." },
+  { n: "02", name: "Bathroom Renovations",    blurb: "Tile showers, custom niches, glass doors, vanities, hex floor tile. Pedestal or full vanity install." },
+  { n: "03", name: "Decks & Stairs",          blurb: "New wood decks, second-story balconies, exterior stair builds. Proper framing, code-compliant, finished to last." },
+  { n: "04", name: "Fireplace & Stone",       blurb: "Stacked stone fireplaces, mantel rebuilds, brick refinishing, TV mount integration on stone." },
+  { n: "05", name: "Flooring Install",        blurb: "Hardwood, laminate, decorative tile patterns. Subfloor prep, full room clearing, clean install." },
+  { n: "06", name: "Framing & Drywall",       blurb: "New walls, framing for additions, drywall hang/tape/mud, popcorn-ceiling removal, finish-paint ready." },
+  { n: "07", name: "Carpentry & Trim",        blurb: "Built-ins, custom shelving, door & window install, crown molding, spiral staircase repair." },
+  { n: "08", name: "Roofing & Exterior",      blurb: "Roof repair & re-shingle, stucco patch, paver patios, gutter work. Smaller jobs to full exterior refresh." },
 ]
 
 const BEFORE_AFTER = [
@@ -190,15 +192,16 @@ export default function AffordableHandymanPage() {
           </div>
 
           <div style={{ position: "relative", transform: `translateY(${scrollY * -0.05}px)` }}>
-            <div style={heroFrame}>
-              <Image
-                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=85"
-                alt="Recently completed kitchen remodel"
-                width={900} height={1100}
-                priority
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
-            </div>
+            <a href="https://www.yelp.com/biz_photos/affordable-home-remodels-and-handyman-service-los-angeles-2" target="_blank" rel="noopener" style={{ display: "block", textDecoration: "none" }}>
+              <div style={{ ...heroFrame, background: "#181815", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", padding: 32, textAlign: "center" }}>
+                <div style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif", fontSize: 11, fontWeight: 900, color: "#fb923c", letterSpacing: "0.2em", marginBottom: 14 }}>OUR WORK</div>
+                <div style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif", fontSize: "clamp(2.4rem, 6vw, 4rem)", fontWeight: 900, color: "#fff", lineHeight: 1, letterSpacing: "-0.04em", marginBottom: 8 }}>100+</div>
+                <div style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", marginBottom: 22, maxWidth: 280, lineHeight: 1.5 }}>real project photos on Yelp — kitchens, baths, decks, fireplaces, tile, framing</div>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 22px", background: "#d32323", color: "#fff", borderRadius: 999, fontSize: 13, fontWeight: 800, letterSpacing: "0.02em" }}>
+                  View on Yelp →
+                </div>
+              </div>
+            </a>
             <div style={jobSlip}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
                 <span style={{ fontSize: 10, fontWeight: 800, color: C.body, letterSpacing: "0.15em" }}>JOB #1847</span>
@@ -251,19 +254,14 @@ export default function AffordableHandymanPage() {
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 18, marginTop: 44 }}>
             {SERVICES.map(s => (
-              <article key={s.n} style={serviceCard}>
-                <div style={{ position: "relative", width: "100%", height: 180, overflow: "hidden" }}>
-                  <Image src={s.img} alt={s.name} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 33vw" />
-                  <div style={{ position: "absolute", top: 12, left: 12, background: "rgba(255,255,255,0.95)", color: C.ink, padding: "4px 10px", borderRadius: 6, fontSize: 10, fontWeight: 800, letterSpacing: "0.12em" }}>
-                    #{s.n}
-                  </div>
+              <article key={s.n} style={{ ...serviceCard, padding: "22px 22px 24px" }}>
+                <div style={{ fontFamily: "var(--font-poppins)", fontSize: 11, fontWeight: 900, color: C.accent, letterSpacing: "0.18em", marginBottom: 10 }}>
+                  #{s.n}
                 </div>
-                <div style={{ padding: "18px 20px 22px" }}>
-                  <h3 style={{ fontFamily: "var(--font-poppins)", fontSize: 17, fontWeight: 800, color: C.ink, letterSpacing: "-0.01em", marginBottom: 6 }}>
-                    {s.name}
-                  </h3>
-                  <p style={{ fontSize: 13.5, lineHeight: 1.6, color: C.body }}>{s.blurb}</p>
-                </div>
+                <h3 style={{ fontFamily: "var(--font-poppins)", fontSize: 18, fontWeight: 800, color: C.ink, letterSpacing: "-0.01em", marginBottom: 8 }}>
+                  {s.name}
+                </h3>
+                <p style={{ fontSize: 14, lineHeight: 1.65, color: C.body }}>{s.blurb}</p>
               </article>
             ))}
           </div>
