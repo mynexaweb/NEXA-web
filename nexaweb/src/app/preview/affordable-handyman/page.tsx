@@ -270,19 +270,6 @@ export default function AffordableHandymanPage() {
         </div>
       </section>
 
-      <section style={{ padding: "60px 20px", background: C.tint, borderTop: `1px solid ${C.line}`, borderBottom: `1px solid ${C.line}` }}>
-        <div style={{ maxWidth: 1180, margin: "0 auto" }}>
-          <Eyebrow>Before → After</Eyebrow>
-          <h2 style={h2Style}>Recent jobs.</h2>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20, marginTop: 36 }}>
-            {BEFORE_AFTER.map(ba => (
-              <BeforeAfterCard key={ba.label} {...ba} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section style={{ padding: "80px 20px" }}>
         <div style={{ maxWidth: 1180, margin: "0 auto" }}>
           <Eyebrow>Why neighbors hire us</Eyebrow>
@@ -346,7 +333,7 @@ export default function AffordableHandymanPage() {
         </div>
       </section>
 
-      <section id="quote" style={{ padding: "70px 20px 100px", background: C.deepTint, borderTop: `1px solid ${C.line}` }}>
+      <section id="quote" style={{ padding: "70px 20px 100px", background: C.deepTint, borderTop: `1px solid ${C.line}`, display: "none" }}>
         <div style={{ maxWidth: 720, margin: "0 auto" }}>
           <Eyebrow>Free written estimate</Eyebrow>
           <h2 style={{ ...h2Style, marginBottom: 10 }}>
