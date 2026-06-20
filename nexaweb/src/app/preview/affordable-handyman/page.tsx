@@ -303,29 +303,32 @@ export default function AffordableHandymanPage() {
         </div>
       </section>
 
-      <section style={{ padding: "60px 20px", background: C.tint, borderTop: `1px solid ${C.line}`, borderBottom: `1px solid ${C.line}` }}>
-        <div style={{ maxWidth: 1180, margin: "0 auto" }}>
-          <Eyebrow>What neighbors say</Eyebrow>
-          <h2 style={h2Style}>
-            <span style={{ display: "inline-flex", gap: 4, marginRight: 14, verticalAlign: "middle" }}>
-              {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={26} />)}
-            </span>
-            {BIZ.rating} from {BIZ.reviewCount} reviews.
+      <section style={{ padding: "70px 20px", background: C.tint, borderTop: `1px solid ${C.line}`, borderBottom: `1px solid ${C.line}` }}>
+        <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+          <Eyebrow>What clients say</Eyebrow>
+          <h2 style={{ ...h2Style, textAlign: "center", marginBottom: 16 }}>
+            Real reviews. <span style={{ color: C.accent }}>Real clients.</span>
           </h2>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 18, marginTop: 36 }}>
-            {REVIEWS.map(r => (
-              <article key={r.name + r.area} style={reviewCard}>
-                <div style={{ display: "flex", gap: 2, marginBottom: 12 }}>
-                  {Array.from({ length: r.stars }).map((_, i) => <Star key={i} size={14} />)}
-                </div>
-                <p style={{ fontSize: 14, lineHeight: 1.7, color: C.ink, marginBottom: 16 }}>&ldquo;{r.text}&rdquo;</p>
-                <div>
-                  <div style={{ fontWeight: 800, fontSize: 13, color: C.ink }}>{r.name}</div>
-                  <div style={{ fontSize: 12, color: C.body }}>{r.area} · verified review</div>
-                </div>
-              </article>
-            ))}
+          <p style={{ fontSize: 16, color: C.body, lineHeight: 1.65, marginBottom: 28, maxWidth: 560, marginLeft: "auto", marginRight: "auto" }}>
+            We don&apos;t paste fake testimonials. Read every review &mdash; the good ones and the honest critiques &mdash; straight from Yelp.
+          </p>
+          <a href={YELP_URL} target="_blank" rel="noopener" style={{
+            display: "inline-flex", alignItems: "center", gap: 10,
+            padding: "16px 26px", borderRadius: 12,
+            background: "#d32323", color: "#fff", textDecoration: "none",
+            fontFamily: "var(--font-poppins), system-ui, sans-serif",
+            fontSize: 16, fontWeight: 800, letterSpacing: "0.01em",
+            boxShadow: "0 6px 20px rgba(211,35,35,0.25)",
+          }}>
+            Read reviews on Yelp →
+          </a>
+          <div style={{ marginTop: 36, padding: "26px 28px", background: "#fff", border: `1px solid ${C.line}`, borderRadius: 14, textAlign: "left" }}>
+            <div style={{ fontSize: 11, fontWeight: 800, color: C.accent, letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: 10 }}>From the owner</div>
+            <p style={{ fontSize: 15, color: C.ink, lineHeight: 1.7, marginBottom: 14, fontStyle: "italic" }}>
+              &ldquo;{BIZ.story}&rdquo;
+            </p>
+            <div style={{ fontWeight: 800, fontSize: 14, color: C.ink }}>{BIZ.ownerFirst} {BIZ.ownerLast}</div>
+            <div style={{ fontSize: 12, color: C.body }}>Owner &middot; {new Date().getFullYear() - BIZ.yearStarted} yrs in business &middot; {BIZ.priorYears + (new Date().getFullYear() - BIZ.yearStarted)} yrs in the trade</div>
           </div>
         </div>
       </section>
