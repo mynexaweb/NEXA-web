@@ -16,8 +16,8 @@ const BIZ = {
   address:     "1607 N Ave 54, Los Angeles, CA 90042",
   city:        "Los Angeles",
   neighborhood:"Highland Park",
-  hoursWeek:   "Mon – Sat · 7:00 AM – 7:00 PM",
-  hoursSun:    "Sun · By appointment",
+  hoursWeek:   "Open daily · 9:00 AM – 9:30 PM",
+  hoursSun:    "Yelp-verified hours",
   yearStarted: 2015,
   priorYears:  9,
   rating:      4.9,
@@ -31,17 +31,16 @@ const BIZ = {
   promise:     "My word is my bond. Quality work at a reasonable price, within any budget.",
 }
 
-// Services list reflects actual work shown in Edgar's Yelp photo gallery:
-// decks, fireplaces, spiral stairs, kitchens, baths, tile, hardwood, framing, roofing.
+// Services — verbatim from Edgar's Yelp "Services Offered" (Verified by Business).
 const SERVICES = [
-  { n: "01", name: "Kitchen Remodels",        blurb: "Full rebuilds — white cabinets, quartz/marble counters, herringbone backsplash, recessed lighting, new flooring." },
-  { n: "02", name: "Bathroom Renovations",    blurb: "Tile showers, custom niches, glass doors, vanities, hex floor tile. Pedestal or full vanity install." },
-  { n: "03", name: "Decks & Stairs",          blurb: "New wood decks, second-story balconies, exterior stair builds. Proper framing, code-compliant, finished to last." },
-  { n: "04", name: "Fireplace & Stone",       blurb: "Stacked stone fireplaces, mantel rebuilds, brick refinishing, TV mount integration on stone." },
-  { n: "05", name: "Flooring Install",        blurb: "Hardwood, laminate, decorative tile patterns. Subfloor prep, full room clearing, clean install." },
-  { n: "06", name: "Framing & Drywall",       blurb: "New walls, framing for additions, drywall hang/tape/mud, popcorn-ceiling removal, finish-paint ready." },
-  { n: "07", name: "Carpentry & Trim",        blurb: "Built-ins, custom shelving, door & window install, crown molding, spiral staircase repair." },
-  { n: "08", name: "Roofing & Exterior",      blurb: "Roof repair & re-shingle, stucco patch, paver patios, gutter work. Smaller jobs to full exterior refresh." },
+  { n: "01", name: "Handyman & Repairs",      blurb: "Appliance install & repair, handyman assembly, caulking, furniture repair. Small jobs welcome." },
+  { n: "02", name: "Doors & Windows",         blurb: "Door installation, door repair, window repair. Interior + exterior." },
+  { n: "03", name: "Drywall",                 blurb: "Drywall installation, replacement, repair. Patch jobs to whole-wall hangs." },
+  { n: "04", name: "Flooring & Tile",         blurb: "Floor install + repair. Tile installation + replacement — bathrooms, kitchens, entryways." },
+  { n: "05", name: "Plumbing",                blurb: "Plumbing installation, replacement, repair. Fixtures, supply lines, drain work." },
+  { n: "06", name: "Decks, Balconies & Patios", blurb: "Deck construction, balcony additions, patio / porch / terrace construction and installation." },
+  { n: "07", name: "Remodels & Additions",    blurb: "Full home remodels, new room additions, structural repair. From kitchens to full gut jobs." },
+  { n: "08", name: "New Builds & ADUs",       blurb: "Guest house / ADU construction, detached garage, manufactured & modular home builds, single-family construction." },
 ]
 
 const BEFORE_AFTER = [
