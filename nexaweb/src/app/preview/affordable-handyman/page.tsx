@@ -131,7 +131,7 @@ export default function AffordableHandymanPage() {
             </span>
           </a>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <a href={`tel:${BIZ.phoneTel}`} style={callPill}>
+            <a href={`tel:${BIZ.phoneTel}`} style={callPill} className="hero-call-pill">
               <span aria-hidden style={{ fontSize: 16 }}>☎</span>
               <span style={{ fontWeight: 800, fontSize: 13, letterSpacing: "0.02em" }}>{BIZ.phone}</span>
             </a>
@@ -161,7 +161,7 @@ export default function AffordableHandymanPage() {
             </p>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
-              <a href={`tel:${BIZ.phoneTel}`} style={primaryBtn}>
+              <a href={`tel:${BIZ.phoneTel}`} style={primaryBtn} className="hero-primary-btn">
                 <span aria-hidden style={{ fontSize: 18 }}>☎</span>
                 Call {BIZ.phone}
               </a>
@@ -453,16 +453,6 @@ export default function AffordableHandymanPage() {
         </div>
       </footer>
 
-      <div style={mobileCtaBar} className="mobile-only-cta">
-        <a href={`tel:${BIZ.phoneTel}`} style={{ ...callPill, padding: "12px 16px", flex: 1, justifyContent: "center" }}>
-          <span aria-hidden style={{ fontSize: 16 }}>☎</span>
-          <span style={{ fontWeight: 800, fontSize: 14 }}>Call now</span>
-        </a>
-        <a href="#quote" style={{ ...ctaPill, padding: "12px 16px", flex: 1, justifyContent: "center", display: "flex", alignItems: "center" }}>
-          Quote
-        </a>
-      </div>
-
       <style dangerouslySetInnerHTML={{ __html: `
         .marquee-mask {
           overflow: hidden;
@@ -506,9 +496,12 @@ export default function AffordableHandymanPage() {
           .mobile-only-cta { display: none !important; }
         }
         @media (max-width: 767px) {
-          body { padding-bottom: 70px; }
           .marquee-card { width: 220px; height: 160px; }
           .marquee-track { animation-duration: 35s; }
+          .hero-call-pill { padding: 7px 11px !important; font-size: 11px !important; }
+          .hero-call-pill span:first-child { font-size: 13px !important; }
+          .hero-call-pill span:last-child { font-size: 11px !important; }
+          .hero-primary-btn { padding: 13px 18px !important; font-size: 14px !important; }
         }
       `}} />
     </div>
