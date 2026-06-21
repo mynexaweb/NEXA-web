@@ -74,7 +74,7 @@ const AREAS = [
 ]
 
 const WHY = [
-  { title: "Free written estimates",     body: "On-site walk-through, line-item quote, no pressure. We don't start until you sign off." },
+  { title: "Honest pricing",             body: "On-site walk-through, line-item quote, no pressure. Nothing starts until you sign off." },
   { title: "Cleanup included",           body: "We sweep, vacuum, and haul off debris every day. You shouldn't have to live in a job site." },
 ]
 
@@ -132,7 +132,6 @@ export default function AffordableHandymanPage() {
               <span aria-hidden style={{ fontSize: 16 }}>☎</span>
               <span style={{ fontWeight: 800, fontSize: 13, letterSpacing: "0.02em" }}>{BIZ.phone}</span>
             </a>
-            <a href="#quote" style={ctaPill}>Free Quote</a>
           </div>
         </div>
       </header>
@@ -155,7 +154,7 @@ export default function AffordableHandymanPage() {
             </h1>
 
             <p style={{ fontSize: 18, lineHeight: 1.55, color: C.body, maxWidth: 500, marginBottom: 32 }}>
-              {BIZ.tagline} Free estimate. Any budget. {BIZ.city} since {BIZ.yearStarted}.
+              {BIZ.tagline} Any budget. {BIZ.city} since {BIZ.yearStarted}.
             </p>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
@@ -163,8 +162,8 @@ export default function AffordableHandymanPage() {
                 <span aria-hidden style={{ fontSize: 18 }}>☎</span>
                 Call {BIZ.phone}
               </a>
-              <a href="#quote" style={secondaryBtn}>
-                Request Free Quote
+              <a href={YELP_URL} target="_blank" rel="noopener" style={secondaryBtn}>
+                See work on Yelp
                 <span aria-hidden style={{ fontSize: 14 }}>→</span>
               </a>
             </div>
@@ -415,7 +414,6 @@ export default function AffordableHandymanPage() {
           </div>
         </div>
         <div style={{ maxWidth: 1180, margin: "32px auto 0", paddingTop: 22, borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-          <div style={{ fontSize: 12, color: "#6b7280" }}>© {new Date().getFullYear()} {BIZ.name}.</div>
           <div style={{ fontSize: 12, color: "#6b7280" }}>
             Designed &amp; built by <Link href="/" style={{ color: "#9ca3af", textDecoration: "underline" }}>NexaWeb</Link>
           </div>
