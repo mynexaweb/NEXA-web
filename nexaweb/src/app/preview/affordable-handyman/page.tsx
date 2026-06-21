@@ -86,13 +86,6 @@ export default function AffordableHandymanPage() {
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
   const [error, setError] = useState("")
-  const [scrollY, setScrollY] = useState(0)
-
-  useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
 
   const set = (k: keyof typeof form, v: string) => setForm(f => ({ ...f, [k]: v }))
 
@@ -147,23 +140,9 @@ export default function AffordableHandymanPage() {
       </header>
 
       <section id="top" style={{ position: "relative", overflow: "hidden", paddingTop: 72 }}>
-        <div aria-hidden style={{
-          position: "absolute", inset: 0,
-          backgroundImage: `linear-gradient(${C.grid} 1px, transparent 1px),
-                            linear-gradient(90deg, ${C.grid} 1px, transparent 1px)`,
-          backgroundSize: "44px 44px",
-          maskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
-          opacity: 0.7,
-        }} />
 
         <div style={{ position: "relative", maxWidth: 1180, margin: "0 auto", padding: "56px 20px 56px", display: "grid", gridTemplateColumns: "1.05fr 1fr", gap: 60, alignItems: "center" }} className="hero-grid">
           <div>
-            <div style={liveDot}>
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: C.live, boxShadow: `0 0 10px ${C.live}` }} />
-              FREE ESTIMATES · CALL EDGAR DIRECT
-            </div>
-
             <h1 style={{
               fontFamily: "var(--font-poppins), system-ui, sans-serif",
               fontSize: "clamp(2.6rem, 6.4vw, 5.2rem)",
@@ -204,7 +183,7 @@ export default function AffordableHandymanPage() {
             </div>
           </div>
 
-          <div style={{ position: "relative", transform: `translateY(${scrollY * -0.05}px)` }}>
+          <div style={{ position: "relative" }}>
             <a href="https://www.yelp.com/biz_photos/affordable-home-remodels-and-handyman-service-los-angeles-2" target="_blank" rel="noopener" style={{ display: "block", textDecoration: "none" }}>
               <div style={{ ...heroFrame, background: "#181815", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", padding: 32, textAlign: "center" }}>
                 <div style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif", fontSize: 11, fontWeight: 900, color: "#fb923c", letterSpacing: "0.2em", marginBottom: 14 }}>OUR WORK</div>
@@ -486,9 +465,7 @@ const C = {
 
 const stickyHdr: React.CSSProperties = {
   position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-  background: "rgba(250,250,247,0.92)",
-  backdropFilter: "blur(14px)",
-  WebkitBackdropFilter: "blur(14px)",
+  background: "#FAFAF7",
   borderBottom: `1px solid ${C.line}`,
 }
 const logoMark: React.CSSProperties = {
