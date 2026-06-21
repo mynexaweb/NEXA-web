@@ -463,7 +463,7 @@ export default function AffordableHandymanPage() {
           display: flex;
           gap: 16px;
           width: max-content;
-          animation: marquee 50s linear infinite;
+          animation: marquee 30s linear infinite;
           will-change: transform;
         }
         .marquee-card {
@@ -472,7 +472,7 @@ export default function AffordableHandymanPage() {
           height: 200px;
           border-radius: 12px;
           overflow: hidden;
-          background: #e5e3db;
+          background: #FAFAF7;
         }
         .marquee-card img {
           width: 100%;
@@ -484,9 +484,6 @@ export default function AffordableHandymanPage() {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
         }
-        @media (prefers-reduced-motion: reduce) {
-          .marquee-track { animation: none; }
-        }
         @media (max-width: 820px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
           .trust-grid { grid-template-columns: repeat(2, 1fr) !important; row-gap: 18px !important; }
@@ -497,7 +494,7 @@ export default function AffordableHandymanPage() {
         }
         @media (max-width: 767px) {
           .marquee-card { width: 220px; height: 160px; }
-          .marquee-track { animation-duration: 35s; }
+          .marquee-track { animation-duration: 22s; }
           .hero-call-pill { padding: 7px 11px !important; font-size: 11px !important; }
           .hero-call-pill span:first-child { font-size: 13px !important; }
           .hero-call-pill span:last-child { font-size: 11px !important; }
