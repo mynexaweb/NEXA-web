@@ -182,10 +182,10 @@ export default function AffordableHandymanPage() {
 
           <div style={{ position: "relative" }}>
             <a href="https://www.yelp.com/biz_photos/affordable-home-remodels-and-handyman-service-los-angeles-2" target="_blank" rel="noopener" style={{ display: "block", textDecoration: "none" }}>
-              <div style={{ ...heroFrame, background: "#181815", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", padding: 32, textAlign: "center" }}>
-                <div style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif", fontSize: 11, fontWeight: 900, color: "#fb923c", letterSpacing: "0.2em", marginBottom: 14 }}>OUR WORK</div>
-                <div style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif", fontSize: "clamp(2.4rem, 6vw, 4rem)", fontWeight: 900, color: "#fff", lineHeight: 1, letterSpacing: "-0.04em", marginBottom: 8 }}>100+</div>
-                <div style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", marginBottom: 22, maxWidth: 280, lineHeight: 1.5 }}>real project photos on Yelp — kitchens, baths, decks, fireplaces, tile, framing</div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", padding: "40px 24px", textAlign: "center", borderLeft: `4px solid ${C.accent}`, paddingLeft: 32 }}>
+                <div style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif", fontSize: 11, fontWeight: 900, color: C.accent, letterSpacing: "0.2em", marginBottom: 14 }}>OUR WORK</div>
+                <div style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif", fontSize: "clamp(3rem, 8vw, 5.5rem)", fontWeight: 900, color: C.ink, lineHeight: 1, letterSpacing: "-0.04em", marginBottom: 10 }}>100+</div>
+                <div style={{ fontSize: 15, color: C.body, marginBottom: 24, maxWidth: 320, lineHeight: 1.55 }}>real project photos on Yelp — kitchens, baths, decks, fireplaces, tile, framing</div>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 22px", background: "#d32323", color: "#fff", borderRadius: 999, fontSize: 13, fontWeight: 800, letterSpacing: "0.02em" }}>
                   View on Yelp →
                 </div>
