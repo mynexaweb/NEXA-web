@@ -242,45 +242,6 @@ export default function AffordableHandymanPage() {
           </a>
         </div>
 
-        <style jsx>{`
-          .marquee-mask {
-            overflow: hidden;
-            mask-image: linear-gradient(to right, transparent 0, black 5%, black 95%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0, black 5%, black 95%, transparent 100%);
-          }
-          .marquee-track {
-            display: flex;
-            gap: 16px;
-            width: max-content;
-            animation: marquee 50s linear infinite;
-            will-change: transform;
-          }
-          .marquee-card {
-            flex-shrink: 0;
-            width: 280px;
-            height: 200px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #e5e3db;
-          }
-          .marquee-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-          }
-          @keyframes marquee {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .marquee-track { animation: none; }
-          }
-          @media (max-width: 600px) {
-            .marquee-card { width: 220px; height: 160px; }
-            .marquee-track { animation-duration: 35s; }
-          }
-        `}</style>
       </section>
 
       <section style={{ padding: "60px 20px 60px" }}>
@@ -502,7 +463,40 @@ export default function AffordableHandymanPage() {
         </a>
       </div>
 
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{ __html: `
+        .marquee-mask {
+          overflow: hidden;
+          -webkit-mask-image: linear-gradient(to right, transparent 0, black 5%, black 95%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, black 5%, black 95%, transparent 100%);
+        }
+        .marquee-track {
+          display: flex;
+          gap: 16px;
+          width: max-content;
+          animation: marquee 50s linear infinite;
+          will-change: transform;
+        }
+        .marquee-card {
+          flex-shrink: 0;
+          width: 280px;
+          height: 200px;
+          border-radius: 12px;
+          overflow: hidden;
+          background: #e5e3db;
+        }
+        .marquee-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .marquee-track { animation: none; }
+        }
         @media (max-width: 820px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
           .trust-grid { grid-template-columns: repeat(2, 1fr) !important; row-gap: 18px !important; }
@@ -513,8 +507,10 @@ export default function AffordableHandymanPage() {
         }
         @media (max-width: 767px) {
           body { padding-bottom: 70px; }
+          .marquee-card { width: 220px; height: 160px; }
+          .marquee-track { animation-duration: 35s; }
         }
-      `}</style>
+      `}} />
     </div>
   )
 }
