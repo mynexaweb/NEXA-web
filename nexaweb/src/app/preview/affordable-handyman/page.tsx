@@ -51,6 +51,10 @@ const BEFORE_AFTER = [
   { label: "Hallway floor — Burbank",   before: "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=700&q=80", after: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" },
 ]
 
+// Drop Edgar's photos into /public/handyman-photos/ with these exact filenames.
+const PHOTOS = ["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.jpg","07.jpg","08.jpg"]
+  .map(f => `/handyman-photos/${f}`)
+
 // Real reviews — verbatim from Google Reviews on Edgar's listing.
 const YELP_URL = "https://www.yelp.com/biz/affordable-home-remodels-and-handyman-service-los-angeles-2"
 const REAL_REVIEWS = [
@@ -211,7 +215,76 @@ export default function AffordableHandymanPage() {
         </div>
       </section>
 
-      <section style={{ padding: "80px 20px 60px" }}>
+      {/* ── Photo marquee — auto-scroll, mobile-safe ──────────────────── */}
+      <section style={{ padding: "70px 0 30px", overflow: "hidden" }}>
+        <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 20px 28px" }}>
+          <Eyebrow>Recent work</Eyebrow>
+          <h2 style={h2Style}>Real jobs. <span style={{ color: C.accent }}>Real LA homes.</span></h2>
+        </div>
+
+        <div className="marquee-mask">
+          <div className="marquee-track">
+            {[...PHOTOS, ...PHOTOS].map((src, i) => (
+              <div key={i} className="marquee-card">
+                <img src={src} alt="" loading="lazy" decoding="async" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ textAlign: "center", marginTop: 28, padding: "0 20px" }}>
+          <div style={{ fontSize: 32, lineHeight: 1, color: C.accent, marginBottom: 4 }} aria-hidden>↑</div>
+          <a href={YELP_URL} target="_blank" rel="noopener" style={{
+            color: C.ink, fontSize: 14, fontWeight: 800,
+            textDecoration: "underline", textUnderlineOffset: 4,
+            fontFamily: "var(--font-poppins), system-ui, sans-serif",
+          }}>
+            View all photos on Yelp →
+          </a>
+        </div>
+
+        <style jsx>{`
+          .marquee-mask {
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent 0, black 5%, black 95%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0, black 5%, black 95%, transparent 100%);
+          }
+          .marquee-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            animation: marquee 50s linear infinite;
+            will-change: transform;
+          }
+          .marquee-card {
+            flex-shrink: 0;
+            width: 280px;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #e5e3db;
+          }
+          .marquee-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+          }
+          @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .marquee-track { animation: none; }
+          }
+          @media (max-width: 600px) {
+            .marquee-card { width: 220px; height: 160px; }
+            .marquee-track { animation-duration: 35s; }
+          }
+        `}</style>
+      </section>
+
+      <section style={{ padding: "60px 20px 60px" }}>
         <div style={{ maxWidth: 1180, margin: "0 auto" }}>
           <Eyebrow>What we fix</Eyebrow>
           <h2 style={h2Style}>
