@@ -75,8 +75,6 @@ const AREAS = [
 
 const WHY = [
   { title: "Free written estimates",     body: "On-site walk-through, line-item quote, no pressure. We don't start until you sign off." },
-  { title: "20 years in the trade",      body: "9 years working under another general contractor, plus 11 running this business. Edgar has seen every kind of job and every kind of mistake." },
-  { title: "On-schedule guarantee",      body: "We hit the date we promise. If we're late on our end, we discount the labor." },
   { title: "Cleanup included",           body: "We sweep, vacuum, and haul off debris every day. You shouldn't have to live in a job site." },
 ]
 
